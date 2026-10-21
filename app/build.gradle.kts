@@ -5,6 +5,7 @@ import java.io.FileInputStream
 plugins {
     id("com.android.application")
     kotlin("android")
+    id("org.jetbrains.kotlin.plugin.compose")
 }
 
 android {
@@ -15,6 +16,7 @@ android {
     buildFeatures {
         buildConfig = true
         aidl = true // needed for shizuku
+        compose = true
     }
 
     externalNativeBuild {
@@ -94,7 +96,9 @@ android {
         // changed to Open Headunit. The code package and namespace stay openheadunit, so the
         // applicationId deliberately differs from the namespace, like com.google.talk for Hangouts.
         applicationId = "com.parlaktech.headunit4u"
-        minSdk = 16
+        // Bumped from 16 to 21 so Jetpack Compose + Material 3 can be used in both flavors;
+        // Android 4.x is <0.1% of devices in 2026 and Android Auto itself needs much newer anyway.
+        minSdk = 21
         targetSdk = 36
         versionCode = 120
         versionName = "4.0.0-alpha"
@@ -123,7 +127,7 @@ android {
         }
         create("github") {
             dimension = "distribution"
-            // Default minSdk 16 from defaultConfig is used
+            // Inherits minSdk 21 from defaultConfig (bumped from 16 for Compose).
         }
     }
 
@@ -222,8 +226,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     applicationVariants.all {
@@ -288,10 +292,26 @@ dependencies {
     implementation("dev.rikka.shizuku:api:13.1.5")
     implementation("dev.rikka.shizuku:provider:13.1.5")
     implementation("com.github.topjohnwu.libsu:core:6.0.0")
+
+    // Jetpack Compose + Material 3 (MoodMap-style UI layer, incremental migration).
+    // Note: navigation-compose intentionally omitted for now — adding it would upgrade
+    // navigation-common transitively past the fragment navigation 2.3.5 that the existing
+    // Fragment-based UI uses (SettingsActivity relies on NavGraph.startDestination which
+    // was removed in Navigation 2.4+). Add navigation-compose only alongside a
+    // fragment-navigation upgrade or when the Compose UI gains its own nav graph.
+    implementation(platform("androidx.compose:compose-bom:2025.09.00"))
+    implementation("androidx.compose.ui:ui")
+    implementation("androidx.compose.ui:ui-graphics")
+    implementation("androidx.compose.ui:ui-tooling-preview")
+    implementation("androidx.compose.material3:material3")
+    implementation("androidx.compose.material:material-icons-extended")
+    implementation("androidx.compose.foundation:foundation")
+    implementation("androidx.activity:activity-compose:1.9.3")
+    debugImplementation("androidx.compose.ui:ui-tooling")
 }
 
 kotlin {
     compilerOptions {
-        jvmTarget.set(JvmTarget.JVM_1_8)
+        jvmTarget.set(JvmTarget.JVM_17)
     }
 }
