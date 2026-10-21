@@ -63,7 +63,7 @@ class NearbyManager(
     private val attempts = NearbyAttemptGuard()
 
     private val connectionsClient = Nearby.getConnectionsClient(context)
-    private val SERVICE_ID = "com.andrerinas.openhu"
+    private val SERVICE_ID = "com.parlaktech.headunit4u.nearby"
     private val STRATEGY = Strategy.P2P_POINT_TO_POINT
     private var isRunning = false
     private var tunnelJob: Job? = null

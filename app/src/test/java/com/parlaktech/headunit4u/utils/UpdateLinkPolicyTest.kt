@@ -8,14 +8,14 @@ class UpdateLinkPolicyTest {
 
     private val base = "https://github.com/andreknieriem/open-headunit/releases"
     private val page = "$base/tag/v.3.5.0-beta3"
-    private val apk = "$base/download/v.3.5.0-beta3/com.andrerinas.headunitrevived_3.5.0-beta3.apk"
-    private val debugApk = "$base/download/v.3.5.0-beta3/com.andrerinas.headunitrevived_3.5.0-beta3_debug.apk"
+    private val apk = "$base/download/v.3.5.0-beta3/com.parlaktech.headunit4u_3.5.0-beta3.apk"
+    private val debugApk = "$base/download/v.3.5.0-beta3/com.parlaktech.headunit4u_3.5.0-beta3_debug.apk"
 
     @Test
     fun picksTheReleaseApkAndSkipsTheDebugBuild() {
         val assets = listOf(
-            "com.andrerinas.headunitrevived_3.5.0-beta3_debug.apk" to debugApk,
-            "com.andrerinas.headunitrevived_3.5.0-beta3.apk" to apk,
+            "com.parlaktech.headunit4u_3.5.0-beta3_debug.apk" to debugApk,
+            "com.parlaktech.headunit4u_3.5.0-beta3.apk" to apk,
         )
         assertEquals(apk, UpdateLinkPolicy.pickApk(assets))
     }

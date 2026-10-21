@@ -53,7 +53,7 @@ object Aa174Notice {
                     settings.aa174NoticeShown = true
                     d.dismiss()
                     try {
-                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://headunit.andrerinas.com/guides/wireless/"))
+                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/omerfarukparlak/headunit4u/guides/wireless/"))
                         activity.startActivity(intent)
                     } catch (e: Exception) {
                         AppLog.e("Aa174Notice: Failed to launch guide URL: ${e.message}")

@@ -7,9 +7,9 @@
 
 # --- Generated Proto Classes ---
 # Keep all generated protocol buffer classes and their members
--keep class com.andrerinas.openheadunit.aap.protocol.proto.** { *; }
--keep interface com.andrerinas.openheadunit.aap.protocol.proto.** { *; }
--keep enum com.andrerinas.openheadunit.aap.protocol.proto.** { *; }
+-keep class com.parlaktech.headunit4u.aap.protocol.proto.** { *; }
+-keep interface com.parlaktech.headunit4u.aap.protocol.proto.** { *; }
+-keep enum com.parlaktech.headunit4u.aap.protocol.proto.** { *; }
 
 # --- Reflection Targets ---
 # Ensure these system classes are kept and their members are accessible via reflection
@@ -22,18 +22,18 @@
 -keep class androidx.fragment.app.FragmentContainerView { *; }
 
 # Keep all fragments in the main package (referenced in nav_graph.xml)
--keep class com.andrerinas.openheadunit.main.** { *; }
--keep class com.andrerinas.openheadunit.main.settings.** { *; }
+-keep class com.parlaktech.headunit4u.main.** { *; }
+-keep class com.parlaktech.headunit4u.main.settings.** { *; }
 
 # --- App Logic ---
 # Keep specific app classes if needed (e.g. accessed via JNI or reflection)
-# -keep class com.andrerinas.openheadunit.decoder.** { *; }
+# -keep class com.parlaktech.headunit4u.decoder.** { *; }
 
 # --- JNI ---
--keep class com.andrerinas.openheadunit.decoder.audio.NativeAAudio { *; }
--keep class com.andrerinas.openheadunit.aap.AapSslNative { *; }
--keep class com.andrerinas.openheadunit.decoder.video.FfmpegHevcDecoder { *; }
--keep class com.andrerinas.openheadunit.decoder.video.FfmpegHevcDecoder$Companion { *; }
+-keep class com.parlaktech.headunit4u.decoder.audio.NativeAAudio { *; }
+-keep class com.parlaktech.headunit4u.aap.AapSslNative { *; }
+-keep class com.parlaktech.headunit4u.decoder.video.FfmpegHevcDecoder { *; }
+-keep class com.parlaktech.headunit4u.decoder.video.FfmpegHevcDecoder$Companion { *; }
 
 # --- Conscrypt Rules ---
 -dontwarn org.conscrypt.**
@@ -46,4 +46,4 @@
 -keep public enum com.bumptech.glide.load.ImageHeaderParser$** { **[] $VALUES; public *; }
 
 # Instantiated by Shizuku in a separate process using its class name and public constructor.
--keep class com.andrerinas.openheadunit.connection.wifi.scan.WifiScanUserService { *; }
+-keep class com.parlaktech.headunit4u.connection.wifi.scan.WifiScanUserService { *; }
