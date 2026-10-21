@@ -322,7 +322,7 @@ class AutomationCommandPolicyTest {
     @Test
     fun `every command the manifest advertises is one the policy answers`() {
         val manifest = java.io.File("src/main/AndroidManifest.xml").readText()
-        val advertised = Regex("""<action android:name="(com\.andrerinas\.openheadunit\.[^"]+)"""")
+        val advertised = Regex("""<action android:name="(com\.parlaktech\.headunit4u\.[^"]+)"""")
             .findAll(manifest.substringAfter("AutomationReceiver").substringBefore("</receiver>"))
             .map { it.groupValues[1] }
             .toList()

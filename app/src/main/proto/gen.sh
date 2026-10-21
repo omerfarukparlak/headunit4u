@@ -1,16 +1,10 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
-# Change to the directory where .proto files are located
-cd app/src/main/proto/
+# Requires protoc on PATH (brew install protobuf).
+cd "$(dirname "$0")"
 
-/Users/andre/Downloads/protoc-25.1-osx-aarch_64/bin/protoc common.proto --java_out=../java/
-/Users/andre/Downloads/protoc-25.1-osx-aarch_64/bin/protoc control.proto --java_out=../java/
-/Users/andre/Downloads/protoc-25.1-osx-aarch_64/bin/protoc input.proto --java_out=../java/
-/Users/andre/Downloads/protoc-25.1-osx-aarch_64/bin/protoc media.proto --java_out=../java/
-/Users/andre/Downloads/protoc-25.1-osx-aarch_64/bin/protoc navigation.proto --java_out=../java/
-/Users/andre/Downloads/protoc-25.1-osx-aarch_64/bin/protoc playback.proto --java_out=../java/
-/Users/andre/Downloads/protoc-25.1-osx-aarch_64/bin/protoc sensors.proto --java_out=../java/
-/Users/andre/Downloads/protoc-25.1-osx-aarch_64/bin/protoc wireless.proto --java_out=../java/
-
-# Go back to the original directory
-cd -
+for p in common.proto control.proto input.proto media.proto \
+         navigation.proto playback.proto sensors.proto wireless.proto; do
+    protoc "$p" --java_out=../java/
+done
