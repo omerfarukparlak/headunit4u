@@ -35,8 +35,8 @@ compiler = [jar("org.jetbrains.kotlin", "kotlin-compiler-embeddable", kotlin), s
 sources = [repo / line for line in (audio_base / "sources.txt").read_text().splitlines() if line]
 # observeConnectionState owns scan-control activation. Compile its real route policy and
 # strategy enum; only the Android launcher and Shizuku side effects are doubled below.
-sources += [repo / "app/src/main/java/com/andrerinas/openheadunit/connection/wifi/scan/ScanControlPolicy.kt",
-            repo / "app/src/main/java/com/andrerinas/openheadunit/connection/wifi/modes/nativeaa/NativeStrategy.kt"]
+sources += [repo / "app/src/main/java/com/parlaktech/headunit4u/connection/wifi/scan/ScanControlPolicy.kt",
+            repo / "app/src/main/java/com/parlaktech/headunit4u/connection/wifi/modes/nativeaa/NativeStrategy.kt"]
 overrides = {p.name for p in (base / "audio-stubs").glob("*.kt")}
 sources += [p for p in sorted((audio_base / "stubs").glob("*.kt")) if p.name not in overrides]
 sources += sorted((base / "audio-stubs").glob("*.kt"))
@@ -44,7 +44,7 @@ output = repo / "build/host-connection/audio-integration"
 output.mkdir(parents=True, exist_ok=True)
 target = output / "regression.jar"
 # Extract lifecycle entrypoints without the unrelated Android service dependencies.
-service = (repo / "app/src/main/java/com/andrerinas/openheadunit/aap/AapService.kt").read_text()
+service = (repo / "app/src/main/java/com/parlaktech/headunit4u/aap/AapService.kt").read_text()
 
 
 def member_block(declaration, source=service):
@@ -61,7 +61,7 @@ def member_block(declaration, source=service):
     raise RuntimeError("Unclosed service member: " + declaration)
 
 
-comm = (repo / "app/src/main/java/com/andrerinas/openheadunit/connection/CommManager.kt").read_text()
+comm = (repo / "app/src/main/java/com/parlaktech/headunit4u/connection/CommManager.kt").read_text()
 
 lifecycle_fixture = output / "LifecycleFixture.kt"
 lifecycle = (base / "LifecycleFixture.kt").read_text()
@@ -81,15 +81,15 @@ for marker, declaration, source in [
 lifecycle_fixture.write_text(lifecycle)
 sources.append(lifecycle_fixture)
 recovery = output / "SettingsRestartRecovery.kt"
-recovery.write_text((repo / "app/src/main/java/com/andrerinas/openheadunit/connection/SettingsRestartRecovery.kt").read_text()
-                   .replace("package com.andrerinas.openheadunit.connection", "package com.andrerinas.openheadunit.decoder.audio"))
+recovery.write_text((repo / "app/src/main/java/com/parlaktech/headunit4u/connection/SettingsRestartRecovery.kt").read_text()
+                   .replace("package com.parlaktech.headunit4u.connection", "package com.parlaktech.headunit4u.decoder.audio"))
 sources.append(recovery)
 raise_policy = output / "ProjectionRaiseDeadlinePolicy.kt"
-raise_policy.write_text((repo / "app/src/main/java/com/andrerinas/openheadunit/aap/ProjectionRaiseDeadlinePolicy.kt").read_text()
-                        .replace("package com.andrerinas.openheadunit.aap", "package com.andrerinas.openheadunit.decoder.audio"))
+raise_policy.write_text((repo / "app/src/main/java/com/parlaktech/headunit4u/aap/ProjectionRaiseDeadlinePolicy.kt").read_text()
+                        .replace("package com.parlaktech.headunit4u.aap", "package com.parlaktech.headunit4u.decoder.audio"))
 sources.append(raise_policy)
 entrypoint = output / "IntegrationMain.kt"
-entrypoint.write_text("package com.andrerinas.openheadunit.decoder.audio\nfun main() { audioLifecycleBoundaryRegression() }\n")
+entrypoint.write_text("package com.parlaktech.headunit4u.decoder.audio\nfun main() { audioLifecycleBoundaryRegression() }\n")
 sources.append(entrypoint)
 classpath = os.pathsep.join(map(str, [stdlib, annotations, coroutines]))
 
@@ -98,4 +98,4 @@ subprocess.run(["java", "-cp", os.pathsep.join(map(str, compiler)),
                 "-classpath", classpath, "-d", str(target),
                 *map(str, sources)], check=True)
 subprocess.run(["java", "-cp", str(target) + os.pathsep + classpath,
-                "com.andrerinas.openheadunit.decoder.audio.IntegrationMainKt"], check=True, timeout=30)
+                "com.parlaktech.headunit4u.decoder.audio.IntegrationMainKt"], check=True, timeout=30)

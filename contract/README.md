@@ -10,7 +10,7 @@ The **package** and the **action prefix** are different, on purpose:
 | | |
 |---|---|
 | package (applicationId) | `com.parlaktech.headunit4u` |
-| action prefix (namespace) | `com.andrerinas.openheadunit` |
+| action prefix (namespace) | `com.parlaktech.headunit4u` |
 
 The app kept its original Play Store listing when it was renamed, so the two never matched. Using
 the wrong one silently does nothing — there is no error. Copy the lines below rather than typing
@@ -21,7 +21,7 @@ them.
 Everything goes to one receiver:
 
 ```
-com.parlaktech.headunit4u/com.andrerinas.openheadunit.automation.AutomationReceiver
+com.parlaktech.headunit4u/com.parlaktech.headunit4u.automation.AutomationReceiver
 ```
 
 **Tasker**: Action → Misc → Send Intent. Set *Target* to **Broadcast Receiver**, *Action* to the
@@ -36,9 +36,9 @@ extras with explicit types; Tasker allows two.
 
 ```bash
 PKG=com.parlaktech.headunit4u
-RX=$PKG/com.andrerinas.openheadunit.automation.AutomationReceiver
+RX=$PKG/com.parlaktech.headunit4u.automation.AutomationReceiver
 
-adb shell am broadcast -n $RX -a com.andrerinas.openheadunit.ACTION_QUERY_STATE
+adb shell am broadcast -n $RX -a com.parlaktech.headunit4u.ACTION_QUERY_STATE
 ```
 
 `am` sends ordered, so the reply comes back as JSON on the `data=` field. Tasker's Send Intent is
@@ -48,7 +48,7 @@ not ordered and cannot read a reply — a Tasker task watches the session broadc
 
 Open to any caller, like the steering-wheel key receivers already are.
 
-| Action (prefix `com.andrerinas.openheadunit.`) | Extras | Does |
+| Action (prefix `com.parlaktech.headunit4u.`) | Extras | Does |
 |---|---|---|
 | `ACTION_CONNECT` | `ip` (optional), `no_ui` | With `ip`, opens a session to Android Auto's head unit server on 5277. Without, checks USB. |
 | `ACTION_DISCONNECT` | | Ends the session. |
@@ -77,7 +77,7 @@ It applies to the next raise only, so an ordinary reconnect still comes to the f
 options; without it these are refused and the reply says so. Connecting and disconnecting are
 unaffected.
 
-| Action (prefix `com.andrerinas.openheadunit.`) | Extras | Does |
+| Action (prefix `com.parlaktech.headunit4u.`) | Extras | Does |
 |---|---|---|
 | `ACTION_SET_SETTINGS` | `json` or `path` | Applies a settings backup. Same format the in-app export writes. |
 | `ACTION_GET_SETTINGS` | `path` (optional) | Replies with the settings, or writes them to `path`. Credential-bearing keys are withheld; see below. |

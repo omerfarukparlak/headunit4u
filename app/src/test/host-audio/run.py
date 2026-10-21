@@ -35,4 +35,4 @@ subprocess.run(["java", "-cp", os.pathsep.join(map(str, compiler)),
                 "-classpath", str(stdlib) + os.pathsep + str(annotations), "-d", str(target),
                 *map(str, sources)], check=True)
 subprocess.run(["java", "-cp", str(target) + os.pathsep + str(stdlib),
-                "com.andrerinas.openheadunit.decoder.audio.RegressionKt"], check=True, timeout=30)
+                "com.parlaktech.headunit4u.decoder.audio.RegressionKt"], check=True, timeout=30)

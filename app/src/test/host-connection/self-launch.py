@@ -11,7 +11,7 @@ import subprocess
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[3]
-SRC = ROOT / 'app/src/main/java/com/andrerinas/openheadunit'
+SRC = ROOT / 'app/src/main/java/com/parlaktech/headunit4u'
 OUT = ROOT / 'build/host-connection/self-launch'
 OUT.mkdir(parents=True, exist_ok=True)
 methods = {}
@@ -58,10 +58,10 @@ for marker, file, declaration in [
     fixture = fixture.replace('// ' + marker + '\n', code + '\n')
 (OUT / 'SelfLaunchFixture.kt').write_text(fixture)
 (OUT / 'ProjectionRaiseDeadlinePolicy.kt').write_text((SRC / 'aap/ProjectionRaiseDeadlinePolicy.kt').read_text()
-    .replace('package com.andrerinas.openheadunit.aap', 'package selflaunch'))
+    .replace('package com.parlaktech.headunit4u.aap', 'package selflaunch'))
 for name in ['SelfLaunchCoalescePolicy.kt', 'SelfLaunchTimeoutPolicy.kt']:
     source = (SRC / 'connection/self' / name).read_text()
-    (OUT / name).write_text(source.replace('package com.andrerinas.openheadunit.connection.self', 'package selflaunch'))
+    (OUT / name).write_text(source.replace('package com.parlaktech.headunit4u.connection.self', 'package selflaunch'))
 (OUT / 'extracted-method-sha256.json').write_text(json.dumps(methods, indent=2))
 # Reuse the toolchain selected by run.py, including its installed-Kotlin fallback.
 toolchain = json.loads((OUT.parent / 'toolchain.json').read_text())

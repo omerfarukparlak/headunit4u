@@ -13,7 +13,7 @@ if not (ROOT/'app/src/main/java').is_dir():
     raise SystemExit('Pass the extracted source/ directory as the first argument.')
 OUT=ROOT/'build/host-connection'
 OUT.mkdir(parents=True,exist_ok=True)
-base=ROOT/'app/src/main/java/com/andrerinas/openheadunit'
+base=ROOT/'app/src/main/java/com/parlaktech/headunit4u'
 comm=(base/'connection/CommManager.kt').read_text()
 transport=(base/'aap/AapTransport.kt').read_text()
 def member(source, name):
@@ -33,7 +33,7 @@ import android.app.Application
 import android.content.Context
 import android.media.AudioManager
 import android.os.*
-import com.andrerinas.openheadunit.aap.protocol.proto.Control
+import com.parlaktech.headunit4u.aap.protocol.proto.Control
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 import java.util.concurrent.*
@@ -109,10 +109,10 @@ class CommManager {
 old_state=manager_head[manager_head.index(' class Disconnected('):manager_head.index(' object Connecting:')]
 manager_head=manager_head.replace(old_state, extract(comm, 'class Disconnected(')+'\n')
 for name in ['SettingsRestartRecovery.kt', 'SameEndpointConnectPolicy.kt']:
-    source=(base/'connection'/name).read_text().replace('package com.andrerinas.openheadunit.connection', 'package lifecycle')
+    source=(base/'connection'/name).read_text().replace('package com.parlaktech.headunit4u.connection', 'package lifecycle')
     (OUT/name).write_text(source)
-(OUT/'AaPresentationSession.kt').write_text((base/'aap/AaPresentationSession.kt').read_text().replace('package com.andrerinas.openheadunit.aap', 'package lifecycle'))
-(OUT/'FinalMessageDelivery.kt').write_text((base/'aap/FinalMessageDelivery.kt').read_text().replace('package com.andrerinas.openheadunit.aap', 'package lifecycle'))
+(OUT/'AaPresentationSession.kt').write_text((base/'aap/AaPresentationSession.kt').read_text().replace('package com.parlaktech.headunit4u.aap', 'package lifecycle'))
+(OUT/'FinalMessageDelivery.kt').write_text((base/'aap/FinalMessageDelivery.kt').read_text().replace('package com.parlaktech.headunit4u.aap', 'package lifecycle'))
 # These endpoint predicates must be the real ones when testing the terminal route snapshot.
 for declaration in ['val isWirelessSession:', 'val isLoopbackSession:']:
     start = comm.index(declaration)
@@ -270,7 +270,7 @@ fun lateHandshakeEntry()=runBlocking{
  check(c.state is ConnectionState.Disconnected && c.failures.isEmpty())
  old.quit(false)
  check(c.context.broadcasts.isEmpty() && Handler.delayed.isEmpty())
- check(!com.andrerinas.openheadunit.aap.AapService.killProcessOnDestroy)
+ check(!com.parlaktech.headunit4u.aap.AapService.killProcessOnDestroy)
  c.cleanups();c.close()
  println("PASS late handshake entry cannot reopen the no-kill disconnect decision")
 }
@@ -587,7 +587,7 @@ object UsbBridge{ @Volatile var afterConnect:(()->Unit)?=null;var forcedOpen:(()
 // The production USB check has to match the fixture's USB double.
 typealias AbstractUsbProjectionConnection=StandardUsbProjectionConnection
 open class StandardUsbProjectionConnection(m:UsbManager,d:UsbDevice):ProjectionConnection(){
- private val actual=com.andrerinas.openheadunit.connection.projection.StandardUsbProjectionConnection(m,d)
+ private val actual=com.parlaktech.headunit4u.connection.projection.StandardUsbProjectionConnection(m,d)
  override fun connect():Boolean {UsbBridge.forcedOpen?.let{return it()};val r=runBlocking{actual.connect()};UsbBridge.afterConnect?.invoke();return r}
  override fun disconnect(){super.disconnect();actual.disconnect()}
 }
@@ -789,8 +789,8 @@ class Context{
 ''')
 (OUT/'App.kt').write_text('package android.app\nobject Application{const val AUDIO_SERVICE="audio"}\nclass ActivityManager{val appTasks=emptyList<AppTask>();class AppTask{fun finishAndRemoveTask(){}}}\n')
 (OUT/'Media.kt').write_text('package android.media\nclass AudioManager{fun interface OnAudioFocusChangeListener{fun onAudioFocusChange(i:Int)};companion object{const val STREAM_MUSIC=3;const val AUDIOFOCUS_GAIN=1}}\n')
-(OUT/'Service.kt').write_text('package com.andrerinas.openheadunit.aap\nclass AapService{companion object{const val ACTION_STOP_SERVICE="stop";var killProcessOnDestroy=false}}\n')
-(OUT/'Proto.kt').write_text(r'''package com.andrerinas.openheadunit.aap.protocol.proto
+(OUT/'Service.kt').write_text('package com.parlaktech.headunit4u.aap\nclass AapService{companion object{const val ACTION_STOP_SERVICE="stop";var killProcessOnDestroy=false}}\n')
+(OUT/'Proto.kt').write_text(r'''package com.parlaktech.headunit4u.aap.protocol.proto
 object Control{
  enum class ByeByeReason{USER_SELECTION}
  class ByeByeRequest{class Builder{fun setReason(r:ByeByeReason)=this;fun build()=ByeByeRequest()};companion object{fun newBuilder()=Builder()}}
@@ -800,7 +800,7 @@ object Control{
 # Full, byte-for-byte production connection files; Android APIs only are doubled.
 meta={}
 for name in ['ProjectionConnection.kt','AbstractUsbProjectionConnection.kt','StandardUsbProjectionConnection.kt']:
- p=ROOT/'app/src/main/java/com/andrerinas/openheadunit/connection/projection'/name
+ p=ROOT/'app/src/main/java/com/parlaktech/headunit4u/connection/projection'/name
  shutil.copy2(p,OUT/name);meta[str(p.relative_to(ROOT))]=hashlib.sha256(p.read_bytes()).hexdigest()
 (OUT/'Usb.kt').write_text('''package android.hardware.usb
 import java.util.concurrent.atomic.AtomicInteger
@@ -816,11 +816,11 @@ class UsbDeviceConnection{
  fun bulkTransfer(e:UsbEndpoint,b:ByteArray,n:Int,t:Int)=-1
 }
 ''')
-(OUT/'UsbCompat.kt').write_text('''package com.andrerinas.openheadunit.connection.usb
+(OUT/'UsbCompat.kt').write_text('''package com.parlaktech.headunit4u.connection.usb
 import android.hardware.usb.*
 class UsbDeviceCompat(d:UsbDevice){companion object{fun usbManager(c:android.content.Context)=c.getSystemService(android.content.Context.USB_SERVICE) as UsbManager;fun getUniqueName(d:UsbDevice)="usb-fixture";fun selectEndpoints(i:UsbInterface)=UsbEndpoint() to UsbEndpoint()}}
 ''')
-(OUT/'UsbLog.kt').write_text('''package com.andrerinas.openheadunit.utils
+(OUT/'UsbLog.kt').write_text('''package com.parlaktech.headunit4u.utils
 object AppLog{fun i(s:String){};fun w(s:String){};fun e(s:String){};fun e(t:Throwable){}}
 ''')
 (OUT/'full-production-file-sha256.json').write_text(json.dumps(meta,indent=2))
