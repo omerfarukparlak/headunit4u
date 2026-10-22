@@ -96,7 +96,7 @@ static void onError(AAudioStream*, void* context, aaudio_result_t error) {
 }
 
 extern "C" JNIEXPORT jlong JNICALL
-Java_com.parlaktech.headunit4u_decoder_audio_NativeAAudio_open(JNIEnv*, jobject) {
+Java_com_parlaktech_headunit4u_decoder_audio_NativeAAudio_open(JNIEnv*, jobject) {
     auto& a = api();
     if (!a.ready) return 0;
     AAudioStreamBuilder* builder = nullptr;
@@ -143,7 +143,7 @@ Java_com.parlaktech.headunit4u_decoder_audio_NativeAAudio_open(JNIEnv*, jobject)
 }
 
 extern "C" JNIEXPORT jint JNICALL
-Java_com.parlaktech.headunit4u_decoder_audio_NativeAAudio_start(JNIEnv*, jobject, jlong handle) {
+Java_com_parlaktech_headunit4u_decoder_audio_NativeAAudio_start(JNIEnv*, jobject, jlong handle) {
     auto* sink = output(handle);
     if (!sink) return AAUDIO_ERROR_INVALID_HANDLE;
     if (sink->error.load(std::memory_order_relaxed) < 0) return sink->error.load(std::memory_order_relaxed);
@@ -153,7 +153,7 @@ Java_com.parlaktech.headunit4u_decoder_audio_NativeAAudio_start(JNIEnv*, jobject
 }
 
 extern "C" JNIEXPORT jint JNICALL
-Java_com.parlaktech.headunit4u_decoder_audio_NativeAAudio_pause(JNIEnv*, jobject, jlong handle) {
+Java_com_parlaktech_headunit4u_decoder_audio_NativeAAudio_pause(JNIEnv*, jobject, jlong handle) {
     auto* sink = output(handle);
     if (!sink) return AAUDIO_ERROR_INVALID_HANDLE;
     const auto error = sink->error.load(std::memory_order_relaxed);
@@ -178,7 +178,7 @@ Java_com.parlaktech.headunit4u_decoder_audio_NativeAAudio_pause(JNIEnv*, jobject
 }
 
 extern "C" JNIEXPORT jint JNICALL
-Java_com.parlaktech.headunit4u_decoder_audio_NativeAAudio_write(JNIEnv* env, jobject, jlong handle,
+Java_com_parlaktech_headunit4u_decoder_audio_NativeAAudio_write(JNIEnv* env, jobject, jlong handle,
         jshortArray data, jint offset, jint count) {
     auto* sink = output(handle);
     if (!sink || !data) return AAUDIO_ERROR_INVALID_HANDLE;
@@ -209,7 +209,7 @@ Java_com.parlaktech.headunit4u_decoder_audio_NativeAAudio_write(JNIEnv* env, job
 }
 
 extern "C" JNIEXPORT jint JNICALL
-Java_com.parlaktech.headunit4u_decoder_audio_NativeAAudio_setQueueFrames(JNIEnv*, jobject, jlong handle, jint frames) {
+Java_com_parlaktech_headunit4u_decoder_audio_NativeAAudio_setQueueFrames(JNIEnv*, jobject, jlong handle, jint frames) {
     auto* sink = output(handle);
     if (!sink) return AAUDIO_ERROR_INVALID_HANDLE;
     if (frames <= 0 || frames > static_cast<jint>(CallbackPcmBuffer::capacity)) return AAUDIO_ERROR_OUT_OF_RANGE;
@@ -218,7 +218,7 @@ Java_com.parlaktech.headunit4u_decoder_audio_NativeAAudio_setQueueFrames(JNIEnv*
 }
 
 extern "C" JNIEXPORT jint JNICALL
-Java_com.parlaktech.headunit4u_decoder_audio_NativeAAudio_setBufferFrames(JNIEnv*, jobject, jlong handle, jint frames) {
+Java_com_parlaktech_headunit4u_decoder_audio_NativeAAudio_setBufferFrames(JNIEnv*, jobject, jlong handle, jint frames) {
     auto* sink = output(handle);
     if (!sink) return AAUDIO_ERROR_INVALID_HANDLE;
     const auto result = api().AAudioStream_setBufferSizeInFrames(sink->stream, frames);
@@ -227,7 +227,7 @@ Java_com.parlaktech.headunit4u_decoder_audio_NativeAAudio_setBufferFrames(JNIEnv
 }
 
 extern "C" JNIEXPORT jint JNICALL
-Java_com.parlaktech.headunit4u_decoder_audio_NativeAAudio_stat(JNIEnv*, jobject, jlong handle, jint kind) {
+Java_com_parlaktech_headunit4u_decoder_audio_NativeAAudio_stat(JNIEnv*, jobject, jlong handle, jint kind) {
     auto* sink = output(handle);
     if (!sink) return AAUDIO_ERROR_INVALID_HANDLE;
     auto& a = api();
@@ -267,7 +267,7 @@ static bool stopAndClose(Output* sink) {
 }
 
 extern "C" JNIEXPORT jshortArray JNICALL
-Java_com.parlaktech.headunit4u_decoder_audio_NativeAAudio_closeForRecovery(JNIEnv* env, jobject, jlong handle) {
+Java_com_parlaktech_headunit4u_decoder_audio_NativeAAudio_closeForRecovery(JNIEnv* env, jobject, jlong handle) {
     auto* sink = output(handle);
     if (!sink || !stopAndClose(sink)) return env->NewShortArray(0);
     std::array<int16_t, CallbackPcmBuffer::capacity * 2> unread{};
@@ -279,7 +279,7 @@ Java_com.parlaktech.headunit4u_decoder_audio_NativeAAudio_closeForRecovery(JNIEn
 }
 
 extern "C" JNIEXPORT void JNICALL
-Java_com.parlaktech.headunit4u_decoder_audio_NativeAAudio_close(JNIEnv*, jobject, jlong handle) {
+Java_com_parlaktech_headunit4u_decoder_audio_NativeAAudio_close(JNIEnv*, jobject, jlong handle) {
     auto* sink = output(handle);
     if (!sink || !stopAndClose(sink)) return;
     delete sink;

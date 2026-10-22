@@ -10,7 +10,7 @@
 #define LOGE(...) __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__)
 
 JNIEXPORT jlong JNICALL
-Java_com.parlaktech.headunit4u_connection_usb_UsbNative_initContext(JNIEnv *env, jobject thiz) {
+Java_com_parlaktech_headunit4u_connection_usb_UsbNative_initContext(JNIEnv *env, jobject thiz) {
     libusb_set_option(NULL, LIBUSB_OPTION_NO_DEVICE_DISCOVERY);
     libusb_context *ctx = NULL;
     int r = libusb_init(&ctx);
@@ -24,7 +24,7 @@ Java_com.parlaktech.headunit4u_connection_usb_UsbNative_initContext(JNIEnv *env,
 }
 
 JNIEXPORT jlong JNICALL
-Java_com.parlaktech.headunit4u_connection_usb_UsbNative_wrapDevice(JNIEnv *env, jobject thiz, jlong ctx_ptr, jint fd) {
+Java_com_parlaktech_headunit4u_connection_usb_UsbNative_wrapDevice(JNIEnv *env, jobject thiz, jlong ctx_ptr, jint fd) {
     libusb_context *ctx = (libusb_context *)ctx_ptr;
     if (!ctx) {
         LOGE("wrapDevice: context is NULL");
@@ -41,7 +41,7 @@ Java_com.parlaktech.headunit4u_connection_usb_UsbNative_wrapDevice(JNIEnv *env, 
 }
 
 JNIEXPORT jint JNICALL
-Java_com.parlaktech.headunit4u_connection_usb_UsbNative_detachKernel(JNIEnv *env, jobject thiz, jlong handle_ptr, jint interface_num) {
+Java_com_parlaktech_headunit4u_connection_usb_UsbNative_detachKernel(JNIEnv *env, jobject thiz, jlong handle_ptr, jint interface_num) {
     libusb_device_handle *handle = (libusb_device_handle *)handle_ptr;
     if (!handle) {
         LOGE("detachKernel: handle is NULL");
@@ -55,7 +55,7 @@ Java_com.parlaktech.headunit4u_connection_usb_UsbNative_detachKernel(JNIEnv *env
 }
 
 JNIEXPORT jint JNICALL
-Java_com.parlaktech.headunit4u_connection_usb_UsbNative_claimInterface(JNIEnv *env, jobject thiz, jlong handle_ptr, jint interface_num) {
+Java_com_parlaktech_headunit4u_connection_usb_UsbNative_claimInterface(JNIEnv *env, jobject thiz, jlong handle_ptr, jint interface_num) {
     libusb_device_handle *handle = (libusb_device_handle *)handle_ptr;
     if (!handle) {
         LOGE("claimInterface: handle is NULL");
@@ -69,7 +69,7 @@ Java_com.parlaktech.headunit4u_connection_usb_UsbNative_claimInterface(JNIEnv *e
 }
 
 JNIEXPORT jint JNICALL
-Java_com.parlaktech.headunit4u_connection_usb_UsbNative_nativeWrite(JNIEnv *env, jobject thiz, jlong handle_ptr, jbyteArray data, jint length, jint endpoint, jint timeout) {
+Java_com_parlaktech_headunit4u_connection_usb_UsbNative_nativeWrite(JNIEnv *env, jobject thiz, jlong handle_ptr, jbyteArray data, jint length, jint endpoint, jint timeout) {
     libusb_device_handle *handle = (libusb_device_handle *)handle_ptr;
     if (!handle) {
         LOGE("nativeWrite: handle is NULL");
@@ -101,7 +101,7 @@ Java_com.parlaktech.headunit4u_connection_usb_UsbNative_nativeWrite(JNIEnv *env,
 }
 
 JNIEXPORT jint JNICALL
-Java_com.parlaktech.headunit4u_connection_usb_UsbNative_nativeRead(JNIEnv *env, jobject thiz, jlong handle_ptr, jobject jbuf, jint endpoint, jint timeout) {
+Java_com_parlaktech_headunit4u_connection_usb_UsbNative_nativeRead(JNIEnv *env, jobject thiz, jlong handle_ptr, jobject jbuf, jint endpoint, jint timeout) {
     libusb_device_handle *handle = (libusb_device_handle *)handle_ptr;
     if (!handle) {
         LOGE("nativeRead: handle is NULL");
@@ -139,7 +139,7 @@ Java_com.parlaktech.headunit4u_connection_usb_UsbNative_nativeRead(JNIEnv *env, 
 }
 
 JNIEXPORT void JNICALL
-Java_com.parlaktech.headunit4u_connection_usb_UsbNative_nativeResetDevice(JNIEnv *env, jobject thiz, jlong handle_ptr) {
+Java_com_parlaktech_headunit4u_connection_usb_UsbNative_nativeResetDevice(JNIEnv *env, jobject thiz, jlong handle_ptr) {
     libusb_device_handle *handle = (libusb_device_handle *)handle_ptr;
     if (handle) {
         libusb_reset_device(handle);
@@ -147,7 +147,7 @@ Java_com.parlaktech.headunit4u_connection_usb_UsbNative_nativeResetDevice(JNIEnv
 }
 
 JNIEXPORT void JNICALL
-Java_com.parlaktech.headunit4u_connection_usb_UsbNative_closeDevice(JNIEnv *env, jobject thiz, jlong handle_ptr) {
+Java_com_parlaktech_headunit4u_connection_usb_UsbNative_closeDevice(JNIEnv *env, jobject thiz, jlong handle_ptr) {
     libusb_device_handle *handle = (libusb_device_handle *)handle_ptr;
     if (handle) {
         libusb_close(handle);
@@ -155,7 +155,7 @@ Java_com.parlaktech.headunit4u_connection_usb_UsbNative_closeDevice(JNIEnv *env,
 }
 
 JNIEXPORT void JNICALL
-Java_com.parlaktech.headunit4u_connection_usb_UsbNative_exitContext(JNIEnv *env, jobject thiz, jlong ctx_ptr) {
+Java_com_parlaktech_headunit4u_connection_usb_UsbNative_exitContext(JNIEnv *env, jobject thiz, jlong ctx_ptr) {
     libusb_context *ctx = (libusb_context *)ctx_ptr;
     if (ctx) {
         libusb_exit(ctx);
@@ -163,7 +163,7 @@ Java_com.parlaktech.headunit4u_connection_usb_UsbNative_exitContext(JNIEnv *env,
 }
 
 JNIEXPORT jint JNICALL
-Java_com.parlaktech.headunit4u_connection_usb_UsbNative_accModeSwitch(JNIEnv *env, jobject thiz, jlong handle_ptr) {
+Java_com_parlaktech_headunit4u_connection_usb_UsbNative_accModeSwitch(JNIEnv *env, jobject thiz, jlong handle_ptr) {
     libusb_device_handle *handle = (libusb_device_handle *)handle_ptr;
     if (!handle) return -1;
     
