@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- USB butonu. Neo orange tonu — koyu temada canli, acikta derin. -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
     <gradient
         android:angle="-90"
-        android:endColor="#d35400"
-        android:startColor="#F4A157" />
-    <corners android:radius="32dp"/>
+        android:startColor="#FFB36A"
+        android:endColor="@color/neo_orange" />
+    <corners android:radius="32dp" />
 </shape>

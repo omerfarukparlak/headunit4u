@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    Uygulamanin varsayilan pencere arka plani. MoodMap "NeoGradientBackground" ile
+    ayni fikir: 3 duraklik dikey gradient (top -> mid -> bottom). Night mode icin
+    aynisi values-night/colors.xml'deki Neo renklerle otomatik koyulasir.
+-->
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
     <gradient
-        android:type="radial"
-        android:centerX="0.6"
-        android:centerY="0.6"
-        android:gradientRadius="620"
-        android:startColor="#296ddb"
-        android:endColor="#030a2a" />
+        android:type="linear"
+        android:angle="270"
+        android:startColor="@color/neo_background_top"
+        android:centerColor="@color/neo_background_mid"
+        android:endColor="@color/neo_background_bottom" />
 </shape>

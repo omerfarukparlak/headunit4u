@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    Splash: alt zemin bg.xml ile ayni Neo dikey gradient, uzerinde ortalanmis logo.
+    Boylece acilista bir anda renk sicramasi olmuyor; splash'tan MainActivity'ye
+    gecis pencere arka plani ayni oldugu icin suruyormus gibi hissediyor.
+-->
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@color/splash_background" />
+    <item android:drawable="@drawable/bg" />
     <item
         android:width="160dp"
         android:height="160dp"

@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="rectangle">
-    <solid android:color="@color/brand_teal" />
-    <corners android:radius="24dp" />
-</shape>
+<!--
+    Birincil buton arka plani — ismi geriye donuk uyumluluk icin "teal" olarak kaldi
+    ama renk artik Neo primary (mor-lila). 22dp koseli dolgu, dialog pozitif butonu
+    ve ozel buton stilleri bunu kullaniyor.
+-->
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="?attr/colorControlHighlight">
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="22dp" />
+            <solid android:color="@color/neo_primary" />
+        </shape>
+    </item>
+</ripple>

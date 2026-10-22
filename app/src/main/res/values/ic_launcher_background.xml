@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="ic_launcher_background">#3198EF</color>
+    <!-- Adaptive icon arka plani — Neo primary (koyu temadaki ton), KOYU_RENKLER.primary ile ayni. -->
+    <color name="ic_launcher_background">#7C5CFF</color>
 </resources>

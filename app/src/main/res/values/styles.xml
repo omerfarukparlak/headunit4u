@@ -1,5 +1,11 @@
 <resources>
 
+    <!--
+        Neo + Glass tema. MoodMap tasarim dilinin Material3 attribute aynasi:
+        colorPrimary/Secondary/Tertiary Neo paletinden, surface tonlari Neo kart
+        renklerinden, background bg.xml dikey gradient'inden geliyor. Dark mode
+        values-night/colors.xml uzerinden otomatik takip ediyor.
+    -->
     <style name="AppTheme" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">false</item>
@@ -7,13 +13,53 @@
         <item name="android:windowBackground">@drawable/bg</item>
         <item name="android:windowTranslucentNavigation">false</item>
         <item name="android:windowTranslucentStatus">false</item>
-        <item name="colorPrimary">@color/brand_teal</item>
-        <item name="colorSecondary">@color/brand_teal</item>
-        <item name="colorAccent">@color/brand_teal</item>
-        <item name="android:colorAccent">@color/brand_teal</item>
+
+        <!-- Marka tonlari -->
+        <item name="colorPrimary">@color/neo_primary</item>
+        <item name="colorOnPrimary">@color/neo_text_primary</item>
+        <item name="colorPrimaryContainer">@color/neo_primary_soft</item>
+        <item name="colorOnPrimaryContainer">@color/neo_text_primary</item>
+        <item name="colorSecondary">@color/neo_primary_soft</item>
+        <item name="colorOnSecondary">@color/neo_text_primary</item>
+        <item name="colorTertiary">@color/neo_pink</item>
+        <item name="colorOnTertiary">@color/neo_text_primary</item>
+        <item name="colorAccent">@color/neo_primary</item>
+        <item name="android:colorAccent">@color/neo_primary</item>
+
+        <!-- Yuzeyler -->
+        <item name="android:colorBackground">@color/neo_background_mid</item>
+        <item name="colorSurface">@color/neo_card</item>
+        <item name="colorOnSurface">@color/neo_text_primary</item>
+        <item name="colorSurfaceVariant">@color/neo_card_soft</item>
+        <item name="colorOnSurfaceVariant">@color/neo_text_secondary</item>
+        <item name="colorOutline">@color/neo_card_border</item>
+
+        <!-- Durum/navigasyon cubugu Neo zemine karissin -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@color/neo_background_bottom</item>
+
+        <!-- Material3 bilesen koseleri — MoodMap kartlariyla uyumlu (22-28dp) -->
+        <item name="shapeAppearanceCornerSmall">@style/ShapeAppearance.Neo.Small</item>
+        <item name="shapeAppearanceCornerMedium">@style/ShapeAppearance.Neo.Medium</item>
+        <item name="shapeAppearanceCornerLarge">@style/ShapeAppearance.Neo.Large</item>
+
         <item name="android:dialogTheme">@style/DarkAlertDialog</item>
         <item name="android:alertDialogTheme">@style/DarkAlertDialog</item>
         <item name="materialAlertDialogTheme">@style/DarkAlertDialog</item>
+    </style>
+
+    <!-- MoodMap kart/buton koseleri: Button 22, Card 28 -->
+    <style name="ShapeAppearance.Neo.Small" parent="ShapeAppearance.Material3.Corner.Small">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">14dp</item>
+    </style>
+    <style name="ShapeAppearance.Neo.Medium" parent="ShapeAppearance.Material3.Corner.Medium">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">22dp</item>
+    </style>
+    <style name="ShapeAppearance.Neo.Large" parent="ShapeAppearance.Material3.Corner.Large">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">28dp</item>
     </style>
 
     <style name="AppTheme.Translucent" parent="android:Theme.Translucent.NoTitleBar" />
@@ -33,13 +79,14 @@
     </style>
 
     <style name="DarkAlertDialog" parent="Theme.Material3.DayNight.Dialog.Alert">
-        <item name="colorPrimary">@color/brand_teal</item>
-        <item name="colorOnPrimary">@android:color/white</item>
-        <item name="colorSecondary">@color/brand_teal</item>
-        <item name="colorOnSecondary">@android:color/white</item>
-        <item name="android:colorAccent">@color/brand_teal</item>
-        <item name="android:background">?attr/colorSurface</item>
-        <item name="android:textColorPrimary">@color/adaptive_text_color</item>
+        <item name="colorPrimary">@color/neo_primary</item>
+        <item name="colorOnPrimary">@color/neo_text_primary</item>
+        <item name="colorSecondary">@color/neo_primary_soft</item>
+        <item name="colorOnSecondary">@color/neo_text_primary</item>
+        <item name="android:colorAccent">@color/neo_primary</item>
+        <item name="android:background">@color/neo_card</item>
+        <item name="colorSurface">@color/neo_card</item>
+        <item name="android:textColorPrimary">@color/neo_text_primary</item>
         <item name="buttonBarPositiveButtonStyle">@style/DialogButton.Positive</item>
         <item name="buttonBarNegativeButtonStyle">@style/DialogButton.Negative</item>
         <item name="shapeAppearance">@style/ShapeAppearanceOverlay.App.Dialog.Rounded</item>
@@ -47,15 +94,15 @@
     </style>
 
     <style name="DialogButton.Positive" parent="Widget.Material3.Button">
-        <item name="android:textColor">@android:color/white</item>
-        <item name="backgroundTint">@color/brand_teal</item>
-        <item name="android:backgroundTint">@color/brand_teal</item>
+        <item name="android:textColor">@color/neo_text_primary</item>
+        <item name="backgroundTint">@color/neo_primary</item>
+        <item name="android:backgroundTint">@color/neo_primary</item>
         <item name="android:background">@drawable/btn_primary_teal</item>
     </style>
 
     <style name="DialogButton.Negative" parent="Widget.Material3.Button.TextButton">
-        <item name="android:textColor">@color/brand_teal</item>
-        <item name="colorSecondary">@color/brand_teal</item>
+        <item name="android:textColor">@color/neo_primary</item>
+        <item name="colorSecondary">@color/neo_primary</item>
     </style>
     <style name="DialogWindowTitle" parent="android:Widget.TextView">
         <item name="android:textColor">@color/text_primary</item>

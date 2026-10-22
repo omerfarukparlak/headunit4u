@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    ThemeOverlay.GradientBackground icin alternatif gradient — mor-pembe karisimli,
+    dekoratif ekranlarda (About, splash sonrasi) kullanilabilir. Light/dark tema
+    icin renk referanslari uzerinden otomatik degisir.
+-->
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
     <gradient
-        android:type="radial"
-        android:centerX="0.5"
-        android:centerY="0.5"
-        android:gradientRadius="720"
-        android:startColor="#4A8FE7"
-        android:endColor="#F0F2F5" />
+        android:type="linear"
+        android:angle="315"
+        android:startColor="@color/neo_background_top"
+        android:centerColor="@color/neo_primary"
+        android:endColor="@color/neo_pink" />
 </shape>
