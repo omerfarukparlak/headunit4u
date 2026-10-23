@@ -987,7 +987,7 @@ class Settings(private val context: Context) {
         // Cosmetic: the phone shows this in its connection history and on the Android Auto
         // welcome screen. It is not the reported manufacturer, which stays "Google" unless
         // the user picks a real car brand — see the car step in OnboardingActivity.
-        get() = prefs.getString("vehicle-display-name", "Open Headunit")!!
+        get() = prefs.getString("vehicle-display-name", "HeadUnit4u")!!
         set(value) { prefs.edit().putString("vehicle-display-name", value).apply() }
 
     var vehicleMake: String
@@ -999,7 +999,7 @@ class Settings(private val context: Context) {
         set(value) { prefs.edit().putString("vehicle-model", value).apply() }
 
     var vehicleYear: String
-        get() = prefs.getString("vehicle-year", "2025")!!
+        get() = prefs.getString("vehicle-year", "2026")!!
         set(value) { prefs.edit().putString("vehicle-year", value).apply() }
 
     var vehicleId: String

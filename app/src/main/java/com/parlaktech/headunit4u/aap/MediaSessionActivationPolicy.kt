@@ -1,7 +1,7 @@
 package com.parlaktech.headunit4u.aap
 
 /**
- * Whether Open Headunit's MediaSessionCompat may be active and carry Android Auto metadata.
+ * Whether HeadUnit4u's MediaSessionCompat may be active and carry Android Auto metadata.
  * In Self Mode, Android Auto and the user's media apps run on this same device, so an active
  * session here takes the media widget and the media buttons from the real player (#929).
  * Asks the live session, not the Self Mode launcher flag, which outlives a failed launch.

@@ -11,7 +11,7 @@ import kotlinx.coroutines.withContext
 
 /**
  * Manages detection, status inspection, and disabling/restoring of OEM CarPlay/Android Auto
- * companion apps (such as Zlink, AutoKit, SpeedPlay) that conflict with Open Headunit by stealing
+ * companion apps (such as Zlink, AutoKit, SpeedPlay) that conflict with HeadUnit4u by stealing
  * USB and Bluetooth endpoints.
  *
  * Execution is performed either via root (libsu) if granted, or via Self-ADB (127.0.0.1:5555).

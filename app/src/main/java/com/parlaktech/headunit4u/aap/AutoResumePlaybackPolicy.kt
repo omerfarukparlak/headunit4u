@@ -13,7 +13,7 @@ object AutoResumePlaybackPolicy {
     const val MAX_RECONNECT_WINDOW_MS = 60_000L
 
     /**
-     * Determines whether Open Headunit should send a playback start command upon reconnection.
+     * Determines whether HeadUnit4u should send a playback start command upon reconnection.
      *
      * @param enabled whether the user has enabled auto-resume in settings
      * @param wasPlayingBeforeDisconnect whether media was actively playing when the connection was lost

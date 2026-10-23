@@ -9,7 +9,7 @@ internal object ScanControlSummary {
     enum class Step { INSTALL, START, ALLOW }
 
     /**
-     * The first unfinished setup step, or null once Open Headunit is allowed. Pre-v11 Shizuku
+     * The first unfinished setup step, or null once HeadUnit4u is allowed. Pre-v11 Shizuku
      * cannot grant access, so it stays on [Step.ALLOW] and the screen asks for an update.
      */
     fun nextStep(installed: Boolean, running: Boolean, allowed: Boolean): Step? = when {

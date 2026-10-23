@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit
 
 /** Shizuku creates this class in a separate shell process; it is not an Android Service. */
 class WifiScanUserService(context: Context) : IWifiScanControl.Stub() {
-    // Shizuku supplies a default Application, not Open Headunit's Application. Use shell
+    // Shizuku supplies a default Application, not HeadUnit4u's Application. Use shell
     // attribution for shell-mode calls rather than attributing privileged calls to the app UID.
     private val shell = context.createPackageContext("com.android.shell", 0)
     private val wifi by lazy { shell.getSystemService(Context.WIFI_SERVICE) as WifiManager }

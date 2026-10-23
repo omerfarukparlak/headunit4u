@@ -58,7 +58,7 @@ object CarLauncherManager {
     }
 
     /**
-     * Checks whether Open Headunit is currently resolved as the default Home handler.
+     * Checks whether HeadUnit4u is currently resolved as the default Home handler.
      */
     fun isDefaultLauncher(context: Context): Boolean {
         return try {
@@ -73,7 +73,7 @@ object CarLauncherManager {
     }
 
     /**
-     * Prompts the user to set Open Headunit as the default Home app.
+     * Prompts the user to set HeadUnit4u as the default Home app.
      * Uses RoleManager on Android 10+ (API 29+), or ACTION_HOME_SETTINGS / Home intent on older APIs.
      */
     fun promptSetDefaultLauncher(context: Context) {
@@ -119,7 +119,7 @@ object CarLauncherManager {
 
     /**
      * Determines whether the main screen Exit button should be shown.
-     * When Car Launcher mode is enabled or Open Headunit is acting as the system Home launcher,
+     * When Car Launcher mode is enabled or HeadUnit4u is acting as the system Home launcher,
      * the Exit button is hidden because exiting the Home launcher has no meaningful target.
      */
     fun shouldShowExitButton(isCarLauncherEnabled: Boolean, isDefaultLauncher: Boolean): Boolean {
