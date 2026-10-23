@@ -205,6 +205,8 @@
     <string name="listen_for_usb_devices_description">Bir USB cihazı takıldığında Android sistem istemini göster.</string>
     <string name="show_toast_messages">Toast Bildirimlerini Göster</string>
     <string name="show_toast_messages_description">Bağlantı, kopma ve mod değiştirme durumlarında durum bildirimi göster.</string>
+    <string name="play_connection_sound">Bağlanınca ses çal</string>
+    <string name="play_connection_sound_description">Android Auto oturumu araç ekranına yansımaya başladığında ve sonlandığında kısa bir onay sesi çalınır. Ses, sistem bildirim seviyesini takip eder.</string>
     <string name="auto_start_usb_label">USB ile otomatik başlat</string>
     <string name="auto_start_usb_description">Bir USB cihazı takıldığında uygulamayı otomatik olarak aç ve bağlanmayı dene</string>
     <string name="auto_start_settings">Otomatik başlatma ayarları</string>
@@ -835,8 +837,11 @@
     <string name="support_rules_describe_desc">Ne yaptığınızı, ne beklediğinizi ve gerçekte ne olduğunu yazın. Görsel sorunlar için bir ekran görüntüsü veya kısa bir video çok işe yarar.</string>
     <string name="support_rules_oneissue_title">Konu başına bir sorun</string>
     <string name="support_rules_oneissue_desc">Her konuyu tek bir sorunla sınırlı tutun ki takip edilip düzeltilebilsin. İlgisiz sorunlar için ayrı konular açın.</string>
-    <string name="rename_notice_title">Adımız HeadUnit4u olarak değişiyor</string>
-    <string name="rename_notice_message">HeadUnit4u sizin sayenizde büyüyor ve kendine ait bir şeye dönüşüyor: HeadUnit4u. Yeni ismi önümüzdeki güncellemeler boyunca yavaş yavaş devreye alıyoruz, bu yüzden bir süre bazı yerlerde hâlâ eski ismi görebilirsin.\n\nAynı uygulama, arkasındaki aynı ekip ve tüm ayarların tam olduğu gibi kalıyor.</string>
+    <string name="rename_notice_title">HeadUnit4u\'ya hoş geldin</string>
+    <string name="rename_notice_message">HeadUnit4u, andrerinas/open-headunit (AGPLv3) projesinin bağımsız bir fork\'udur; o da Michael Reid\'in HeadUnit Reviver çalışmasına dayanır.\n\nUygulama artık bizim ellerimizde: yeni görünüm, yeni yön, aynı iş — telefonu ya da tableti gerçek bir Android Auto head unit\'ine dönüştürmek.</string>
+    <string name="about_fork_notice">andrerinas/open-headunit (AGPLv3) projesinin bir fork\'udur. Michael Reid\'in HeadUnit Reviver çalışmasına dayanır. Kaynak: https://github.com/omerfarukparlak/headunit4u</string>
+    <string name="compose_preview_title">Yeni arayüz önizlemesi</string>
+    <string name="compose_preview_description">Neo + Glass Compose arayüzünün canlı önizlemesi. Deneysel.</string>
     <string name="rename_notice_button">Anladım</string>
     <string name="aa174_notice_title">Önemli Bildirim: Android Auto 17.4+</string>
     <string name="aa174_notice_message"><![CDATA[Android Auto 17.4 sürümünden itibaren Google, Wireless Helper ile otomatik başlatmayı ve klasik Self-Mode özelliğini devre dışı bırakan değişiklikler yaptı.<br/><br/><b>Mevcut çözümler:</b><br/><br/><b>1. Headunit Server (Geliştirici Modu):</b><br/>Self-Mode için kalan tek çalışan çözüm! Telefonunuzda Android Auto geliştirici ayarlarını açın ve "Headunit sunucusunu başlat" seçeneğine dokunun.<br/><br/><b>2. Yerel (Native) Mod:</b><br/>Wi-Fi Direct veya araç sıcak noktası üzerinden doğrudan bağlanır.<br/><br/><b>3. Kablosuz USB Adaptörü:</b><br/>Donanımsal bir USB kablosuz adaptör en kararlı deneyimi sunar.<br/><br/><b>4. Wireless Helper:</b><br/>Android Auto 17.3 ve önceki sürümlerde sorunsuz çalışmaya devam etmektedir.]]></string>

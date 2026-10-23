@@ -194,6 +194,7 @@ class SettingsFragment : Fragment() {
     private var pendingUseLibusb: Boolean? = null
     private var pendingAudioQueueCapacity: Int? = null
     private var pendingShowToastMessages: Boolean? = null
+    private var pendingPlayConnectionSound: Boolean? = null
     private var pendingScreenOrientation: Settings.ScreenOrientation? = null
     private var pendingAppLanguage: String? = null
     private var pendingFakeSpeed: Boolean? = null
@@ -375,6 +376,7 @@ class SettingsFragment : Fragment() {
         pendingAudioLatencyMultiplier = settings.audioLatencyMultiplier
         pendingAudioQueueCapacity = settings.audioQueueCapacity
         pendingShowToastMessages = settings.showToastMessages
+        pendingPlayConnectionSound = settings.playConnectionSound
         pendingScreenOrientation = settings.screenOrientation
         pendingAppLanguage = settings.appLanguage
 
@@ -534,6 +536,7 @@ class SettingsFragment : Fragment() {
         pendingAudioLatencyMultiplier = settings.audioLatencyMultiplier
         pendingAudioQueueCapacity = settings.audioQueueCapacity
         pendingShowToastMessages = settings.showToastMessages
+        pendingPlayConnectionSound = settings.playConnectionSound
         pendingScreenOrientation = settings.screenOrientation
         pendingAppLanguage = settings.appLanguage
         pendingEnableCarLauncher = settings.enableCarLauncher
@@ -773,6 +776,7 @@ class SettingsFragment : Fragment() {
         pendingAudioLatencyMultiplier?.let { if (it != settings.audioLatencyMultiplier) settings.audioLatencyMultiplier = it }
         pendingAudioQueueCapacity?.let { if (it != settings.audioQueueCapacity) settings.audioQueueCapacity = it }
         pendingShowToastMessages?.let { if (it != settings.showToastMessages) settings.showToastMessages = it }
+        pendingPlayConnectionSound?.let { if (it != settings.playConnectionSound) settings.playConnectionSound = it }
         pendingScreenOrientation?.let { if (it != settings.screenOrientation) settings.screenOrientation = it }
 
         pendingMediaVolumeOffset?.let { if (it != settings.mediaVolumeOffset) settings.mediaVolumeOffset = it }
@@ -933,6 +937,7 @@ class SettingsFragment : Fragment() {
                         pendingAudioLatencyMultiplier != settings.audioLatencyMultiplier ||
                         pendingAudioQueueCapacity != settings.audioQueueCapacity ||
                         pendingShowToastMessages != settings.showToastMessages ||
+                        pendingPlayConnectionSound != settings.playConnectionSound ||
                         pendingScreenOrientation != settings.screenOrientation ||
                         pendingAppLanguage != settings.appLanguage ||
                         pendingEnableCarLauncher != settings.enableCarLauncher ||
@@ -1142,6 +1147,18 @@ class SettingsFragment : Fragment() {
             isChecked = pendingShowToastMessages ?: true,
             onCheckedChanged = { isChecked ->
                 pendingShowToastMessages = isChecked
+                checkChanges()
+                updateSettingsList()
+            }
+        ))
+
+        items.add(SettingItem.ToggleSettingEntry(
+            stableId = "playConnectionSound",
+            nameResId = R.string.play_connection_sound,
+            descriptionResId = R.string.play_connection_sound_description,
+            isChecked = pendingPlayConnectionSound ?: true,
+            onCheckedChanged = { isChecked ->
+                pendingPlayConnectionSound = isChecked
                 checkChanges()
                 updateSettingsList()
             }
@@ -3226,6 +3243,26 @@ class SettingsFragment : Fragment() {
                     findNavController().navigate(R.id.action_settingsFragment_to_aboutFragment)
                 } catch (e: Exception) {
                     // Failover
+                }
+            }
+        ))
+
+        // Compose onizlemesi: yeni UI dilimizin canli ornegi. Icon/renk referansini
+        // dogrudan burada gorebilsinler diye Settings icinden erisimi actik.
+        items.add(SettingItem.SettingEntry(
+            stableId = "composePreview",
+            nameResId = R.string.compose_preview_title,
+            value = getString(R.string.compose_preview_description),
+            onClick = {
+                try {
+                    startActivity(
+                        android.content.Intent(
+                            requireContext(),
+                            com.parlaktech.headunit4u.ui.showcase.HeadUnitShowcaseActivity::class.java
+                        )
+                    )
+                } catch (e: Exception) {
+                    // ignore — Compose stack is optional, main flows are unaffected
                 }
             }
         ))

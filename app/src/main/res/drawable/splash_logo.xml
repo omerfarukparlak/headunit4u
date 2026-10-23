@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    Splash logosu: Neo primary dolu yuvarlak + icinde beyaz H4 monogrami.
-    Launcher ikonunun daha opak, "halo"lu versiyonu — splash ekraninda tek
-    basina gorunur, bu yuzden circle backing eklendi.
-
-    5 adet drawable-*dpi/splash_logo.png birakildi (geriye donuk uyum: eski
-    kodun bir yerde o PNG'yi referans etmesi ihtimaline karsi); AAPT density
-    secimi oncelikle "drawable/" icin bu vector'u secer, PNG'lere dusmesine
-    gerek yok.
+    Splash logo — launcher ikonuyla ayni sembol, ama splash tek basina
+    gorundugu icin yuvarlak Neo primary halo'nun icinde. 160dp canvas.
 -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="160dp"
@@ -15,19 +9,27 @@
     android:viewportWidth="160"
     android:viewportHeight="160">
 
-    <!-- Yuvarlak Neo primary zemin, hafif Neo primary_soft tonu merkezde -->
+    <!-- Dis Neo primary daire (zemin) -->
     <path android:fillColor="#7C5CFF"
         android:pathData="M80,8 a72,72 0 1 0 0.1,0 Z" />
 
-    <!-- Ic halka (hafif beyaz halo) -->
+    <!-- Ic halo (hafif beyaz, cam efekti) -->
     <path android:fillColor="#1AFFFFFF"
-        android:pathData="M80,20 a60,60 0 1 0 0.1,0 Z" />
+        android:pathData="M80,22 a58,58 0 1 0 0.1,0 Z" />
 
-    <!-- H harfi (merkezin solu) -->
+    <!-- Head unit face plate -->
     <path android:fillColor="#FFFFFF"
-        android:pathData="M44,56 L54,56 L54,76 L72,76 L72,56 L82,56 L82,104 L72,104 L72,86 L54,86 L54,104 L44,104 Z" />
+        android:pathData="M48,52 L112,52 A8,8 0 0 1 120,60 L120,108 A8,8 0 0 1 112,116 L48,116 A8,8 0 0 1 40,108 L40,60 A8,8 0 0 1 48,52 Z" />
 
-    <!-- 4 rakami (merkezin sagi) -->
+    <!-- Ic ekran (koyu) -->
+    <path android:fillColor="#070B1A"
+        android:pathData="M50,58 L110,58 A4,4 0 0 1 114,62 L114,98 A4,4 0 0 1 110,102 L50,102 A4,4 0 0 1 46,98 L46,62 A4,4 0 0 1 50,58 Z" />
+
+    <!-- AA navigation ok -->
     <path android:fillColor="#FFFFFF"
-        android:pathData="M90,56 L98,56 L98,76 L108,76 L108,84 L98,84 L98,104 L90,104 L90,84 L78,84 L78,76 L90,76 Z" />
+        android:pathData="M80,66 L96,94 L80,88 L64,94 Z" />
+
+    <!-- Hoparlor izi -->
+    <path android:fillColor="#070B1A"
+        android:pathData="M66,108 h4 v4 h-4 Z M78,108 h4 v4 h-4 Z M90,108 h4 v4 h-4 Z" />
 </vector>

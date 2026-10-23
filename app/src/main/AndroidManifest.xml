@@ -250,6 +250,17 @@
             android:windowSoftInputMode="adjustResize"
             android:theme="@style/AppTheme" />
 
+        <!--
+            Compose preview of the Neo UI dili. Henuz manifest'te canliya alinmis
+            tek Compose Activity'si: Settings'teki "Yeni arayuz onizlemesi" tusu
+            buna acilir, boylece kullanici yeni tasarimin yonunu Settings icinden
+            gorebilir. Exported false — baska bir uygulama tetikleyemez.
+        -->
+        <activity
+            android:name=".ui.showcase.HeadUnitShowcaseActivity"
+            android:exported="false"
+            android:theme="@style/AppTheme" />
+
         <service
             android:name=".aap.AapService"
             android:exported="false"

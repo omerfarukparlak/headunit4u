@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    Launcher adaptive icon foreground. 108dp canvas, safe zone 66dp merkezde.
-    Zemin ic_launcher_background (Neo primary #7C5CFF). Foreground: beyaz "H"
-    harfi + saga minimalist "4" rakami — HeadUnit4u markasinin kompakt monogrami.
-    Letterform geometric bold, yuvarlak koseler yok (adaptive mask zaten kirpiyor).
+    Launcher adaptive icon foreground — 108dp canvas, safe zone 66dp.
+    Marka sembolu: beyaz head-unit yuzu + icinde koyu ekran + icinde beyaz
+    Android Auto tarzi navigation ok. Alt tarafta 3 kucuk cizgi hoparlor
+    izgarasini anistirarak uygulamanin "head unit" oldugunu tek bakista belli
+    eder — H4 monogrami yerine simdi gercek bir sembol var.
+
+    Zemin ic_launcher_background renginden geliyor (Neo primary #7C5CFF).
 -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="108dp"
@@ -11,11 +14,19 @@
     android:viewportWidth="108"
     android:viewportHeight="108">
 
-    <!-- H (sol) : iki dikey + orta yatay birlesik path -->
+    <!-- Head unit face plate (yuvarlak koseli beyaz dikdortgen) -->
     <path android:fillColor="#FFFFFF"
-        android:pathData="M28,34 L38,34 L38,52 L52,52 L52,34 L62,34 L62,74 L52,74 L52,62 L38,62 L38,74 L28,74 Z" />
+        android:pathData="M24,24 L84,24 A8,8 0 0 1 92,32 L92,76 A8,8 0 0 1 84,84 L24,84 A8,8 0 0 1 16,76 L16,32 A8,8 0 0 1 24,24 Z" />
 
-    <!-- 4 (sag): dikey ana cubuk + iki uzanti -->
+    <!-- Ic ekran: Neo background_top rengi, hafif ince cerceve beyaza birakir -->
+    <path android:fillColor="#070B1A"
+        android:pathData="M26,30 L82,30 A4,4 0 0 1 86,34 L86,68 A4,4 0 0 1 82,72 L26,72 A4,4 0 0 1 22,68 L22,34 A4,4 0 0 1 26,30 Z" />
+
+    <!-- AA tarzi navigation ok (yukari pointing triangle, iki parcali A) -->
     <path android:fillColor="#FFFFFF"
-        android:pathData="M68,34 L74,34 L74,52 L80,52 L80,58 L74,58 L74,74 L68,74 L68,58 L58,58 L58,52 L68,52 Z" />
+        android:pathData="M54,36 L68,64 L54,58 L40,64 Z" />
+
+    <!-- Alt hoparlor/izgara izi: 3 kucuk dikey cizgi -->
+    <path android:fillColor="#070B1A"
+        android:pathData="M44,78 h4 v3 h-4 Z M52,78 h4 v3 h-4 Z M60,78 h4 v3 h-4 Z" />
 </vector>

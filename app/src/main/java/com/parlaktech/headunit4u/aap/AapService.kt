@@ -1237,6 +1237,20 @@ class AapService : Service() {
         } catch (e: Exception) {
             AppLog.w("AapService: could not broadcast session state: ${e.message}")
         }
+
+        // Short confirmation chime, opt-in via Settings. STATE_PROJECTING is the
+        // moment the user actually sees the car screen; STATE_DISCONNECTED is any
+        // end. Skip STATE_CONNECTING / STATE_CONNECTED to avoid two beeps per
+        // session (handshake + projection) and skip STATE_FAILED since the
+        // reason banner already carries that information.
+        if (settings.playConnectionSound) {
+            when (state) {
+                SessionStateIntent.STATE_PROJECTING ->
+                    ConnectionSoundPolicy.play(this, com.parlaktech.headunit4u.R.raw.connected)
+                SessionStateIntent.STATE_DISCONNECTED ->
+                    ConnectionSoundPolicy.play(this, com.parlaktech.headunit4u.R.raw.disconnected)
+            }
+        }
     }
 
     /**

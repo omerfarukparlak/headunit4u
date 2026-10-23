@@ -1002,6 +1002,14 @@ class Settings(private val context: Context) {
         get() = prefs.getString("vehicle-year", "2026")!!
         set(value) { prefs.edit().putString("vehicle-year", value).apply() }
 
+    // Short confirmation chime when a session connects or ends. Default on because
+    // in a car cabin the eyes stay on the road — audio feedback is the quickest
+    // way to know the handoff worked. Routed through STREAM_NOTIFICATION so a
+    // muted phone stays silent.
+    var playConnectionSound: Boolean
+        get() = prefs.getBoolean("play-connection-sound", true)
+        set(value) { prefs.edit().putBoolean("play-connection-sound", value).apply() }
+
     var vehicleId: String
         get() = prefs.getString("vehicle-id", "headlessunit-001")!!
         set(value) { prefs.edit().putString("vehicle-id", value).apply() }
