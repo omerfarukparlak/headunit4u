@@ -35,7 +35,9 @@ class AboutFragment : Fragment() {
         val contentText = view.findViewById<TextView>(R.id.about_content_text)
 
         val sb = StringBuilder()
-        sb.append("<h3>About HeadUnit4u</h3>")
+        // Not: baslik "About HeadUnit4u"i fragment_about.xml zaten yaziyor
+        // (TextView id=app_name, textAppearanceHeadlineMedium). Burada sadece
+        // govde metnine basla, baslik tekrarlama.
         sb.append("Phone / tablet turned into a real Android Auto head unit. Open source, AGPLv3, built by parlaktech.<br/><br/>")
         sb.append("<a href=\"https://github.com/omerfarukparlak/headunit4u\">github.com/omerfarukparlak/headunit4u</a><br/><br/>")
 
@@ -73,10 +75,15 @@ class AboutFragment : Fragment() {
         html = html.replace(Regex("### (.*)"), "<h4>$1</h4>")
         html = html.replace(Regex("## (.*)"), "<h3>$1</h3>")
         html = html.replace(Regex("# (.*)"), "<h2>$1</h2>")
-        
+
+        // Links [text](url) -> <a href="url">text</a>. Markdown bu notasyonu
+        // kullandigi anda parse edilmezse ekranda duz metin + parantezli URL
+        // olarak kalir, hem cirkin hem tikanamiyor olur.
+        html = html.replace(Regex("\\[([^\\]]+)\\]\\(([^)]+)\\)"), "<a href=\"$2\">$1</a>")
+
         // Bold
         html = html.replace(Regex("\\*\\*(.*?)\\*\\*"), "<b>$1</b>")
-        
+
         // Lists
         html = html.replace(Regex("\n- (.*)"), "<br/>&#8226; $1")
         
