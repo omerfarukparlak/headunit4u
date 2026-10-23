@@ -15,6 +15,59 @@
         android:scaleType="centerCrop"
         android:visibility="gone" />
 
+    <!--
+        Dekoratif atmosfer katmani (MoodMap DecorativeGlowLayer esdegeri). Hersey
+        onumuzden akar — Fragment icerigi, buton grid'i, panel'ler — ama arka
+        planda sag-ust mor + sol-alt pink hafif glow'lari Neo zemine karakter
+        katar. clickable degil, odak almiyor, performans icin tek drawable.
+    -->
+    <View
+        android:layout_width="360dp"
+        android:layout_height="360dp"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="-80dp"
+        android:layout_marginEnd="-120dp"
+        android:background="@drawable/neo_glow_primary"
+        android:importantForAccessibility="no" />
+
+    <View
+        android:layout_width="360dp"
+        android:layout_height="360dp"
+        android:layout_gravity="bottom|start"
+        android:layout_marginBottom="-100dp"
+        android:layout_marginStart="-120dp"
+        android:background="@drawable/neo_glow_pink"
+        android:importantForAccessibility="no" />
+
+    <!-- Marka basligi: ekranin ust-ortasinda, hafif ve dekoratif.
+         wifi_direct_info ortaya cikinca otomatik gizlenir (overlap guvenligi
+         icin margin sagdan ve soldan bosluk birakiyor). -->
+    <LinearLayout
+        android:id="@+id/brand_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|center_horizontal"
+        android:layout_marginTop="18dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="HeadUnit"
+            android:textColor="@color/neo_text_primary"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.02" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4u"
+            android:textColor="@color/neo_primary"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.02" />
+    </LinearLayout>
+
     <TextView
         android:id="@+id/wifi_direct_info"
         android:layout_width="wrap_content"
@@ -314,19 +367,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
-                android:text="OPEN"
+                android:text="HeadUnit"
                 android:textColor="@color/splash_text_white"
                 android:textSize="35sp"
+                android:letterSpacing="0.02"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="-4dp"
-                android:text="Headunit"
-                android:textAllCaps="true"
+                android:text="4u"
                 android:textColor="@color/splash_text_revived"
                 android:textSize="35sp"
+                android:letterSpacing="0.02"
                 android:textStyle="bold" />
 
         </LinearLayout>

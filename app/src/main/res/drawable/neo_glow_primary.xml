@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Dekoratif atmosfer katmani — MoodMap "DecorativeGlowLayer" ile ayni fikir ama
+    XML tarafi icin radial gradient drawable olarak. Ana ekranin sag-ust kosesine
+    yerlestirilir; mor primary tonu belirsiz bir aura verir, zemin monoton kalmaz.
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <gradient
+        android:type="radial"
+        android:centerX="0.5"
+        android:centerY="0.5"
+        android:gradientRadius="420"
+        android:startColor="#4D7C5CFF"
+        android:centerColor="#1A7C5CFF"
+        android:endColor="#007C5CFF" />
+</shape>

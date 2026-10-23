@@ -100,8 +100,10 @@ android {
         // Android 4.x is <0.1% of devices in 2026 and Android Auto itself needs much newer anyway.
         minSdk = 21
         targetSdk = 36
-        versionCode = 120
-        versionName = "4.0.0-alpha"
+        // Own scheme — fork starts at 1.0 under the parlaktech banner. Upstream's 4.x line
+        // is deliberately left behind; our Play/Store listing (if any) will be a fresh one.
+        versionCode = 1
+        versionName = "1.0.0"
         setProperty("archivesBaseName", "${applicationId}_${versionName}")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled = true
