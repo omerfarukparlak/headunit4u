@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="#40000000" />
-    <corners android:radius="20dp" />
-</shape>
+<!--
+    Translucent pill: WiFi Direct bilgi, "Android Auto baslatiliyor" paneli,
+    cancel/exit butonlari gibi overlay elemanlarin arka plani. Neo card tonu
+    yuksek alpha + ince cizgi: cam efekt hissi, koyu zeminde net okunurluk.
+-->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <solid android:color="#D9171B2F" />
+            <corners android:radius="20dp" />
+            <stroke android:width="1dp" android:color="#59343A5A" />
+        </shape>
+    </item>
+</layer-list>

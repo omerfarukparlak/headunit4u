@@ -6,7 +6,13 @@
         renklerinden, background bg.xml dikey gradient'inden geliyor. Dark mode
         values-night/colors.xml uzerinden otomatik takip ediyor.
     -->
-    <style name="AppTheme" parent="Theme.Material3.DayNight.NoActionBar">
+    <!--
+        Not: parent "Dark" (DayNight degil). Uygulama daima koyu Neo zeminde cizilir;
+        ustteki palet (values/colors.xml) de tek takim koyu. Light modda bu ikisi
+        celisirdi; buton etiketleri silik, Settings butonu beyaz-uzerinde-beyaz
+        cikardi. Arac ici head-unit UI'si icin dogal karar.
+    -->
+    <style name="AppTheme" parent="Theme.Material3.Dark.NoActionBar">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">false</item>
         <item name="android:windowContentOverlay">@null</item>

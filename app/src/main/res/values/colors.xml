@@ -1,51 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    HeadUnit4u renk paleti (acik tema varsayilani).
+    HeadUnit4u renk paleti — tek takim, daima KOYU Neo.
 
-    MoodMap'in "Neo" tasarim dilinden alinmistir; her isim hem XML Fragment'ler hem de
-    Compose tarafiyla paylasilir. Ikinci tema (koyu) values-night/colors.xml icinde.
+    MoodMap'in "KOYU_RENKLER" paletinin XML aynasi. Light tema ozellikle silindi:
+    arac ici head-unit UI'si koyu zemin icin tasarlandi, acik modda butonlar
+    yuzeyle karisiyor (bk. Settings butonu beyaz-uzerinde-beyaz sorunu). Her isim
+    hem XML Fragment'ler hem de Compose tarafiyla paylasilir.
 
-    Yeni renkler asagidadir; eski isimler ("brand_teal", "color_projection_blue",
-    "setting_background_color" vb.) kaldirilmadi — tum uygulamada referanslariyla
-    birlikte Neo karsiliklarina yeniden baglandi, boylece layout/kod degisikligi
-    yapilmadan paletin tamami kaymis olur.
+    Legacy renk adlari ("brand_teal", "color_projection_blue", "text_primary" vb.)
+    kaldirilmadi — tum uygulamada referanslariyla birlikte Neo karsiliklarina
+    yeniden baglandi, boylece layout/kod degisikligi yapilmadan paletin tamami
+    kayar.
 -->
 <resources>
 
-    <!-- Material grileri — hala birkac yerde renk tabani olarak referans ediliyor -->
+    <!-- Material grileri — Neo paletindeki muted/text tonlarina baglandi -->
     <color name="material_grey_500">#7E849F</color>
     <color name="material_grey_700">#4A5170</color>
-    <color name="material_grey_900">#12162A</color>
-    <color name="material_orange_700">#EA580C</color>
-    <color name="material_green_700">#16A34A</color>
-    <color name="material_red_700">#DB2777</color>
+    <color name="material_grey_900">#070B1A</color>
+    <color name="material_orange_700">#FF8A3D</color>
+    <color name="material_green_700">#4ADE80</color>
+    <color name="material_red_700">#FF5BA8</color>
 
-    <!-- Neo paleti: acik tema (ACIK_RENKLER'in XML aynasi) -->
-    <color name="neo_background_top">#F7F8FC</color>
-    <color name="neo_background_mid">#EEF1F8</color>
-    <color name="neo_background_bottom">#F3EFFA</color>
-    <color name="neo_card">#FFFFFF</color>
-    <color name="neo_card_soft">#F4F6FB</color>
-    <color name="neo_card_border">#D8DEEC</color>
-    <color name="neo_primary">#6D28D9</color>
-    <color name="neo_primary_soft">#8B5CF6</color>
-    <color name="neo_pink">#DB2777</color>
-    <color name="neo_orange">#EA580C</color>
-    <color name="neo_green">#16A34A</color>
-    <color name="neo_blue">#0284C7</color>
-    <color name="neo_text_primary">#12162A</color>
-    <color name="neo_text_secondary">#4A5170</color>
-    <color name="neo_text_muted">#7A8199</color>
+    <!-- Neo paleti: koyu (KOYU_RENKLER) -->
+    <color name="neo_background_top">#070B1A</color>
+    <color name="neo_background_mid">#101426</color>
+    <color name="neo_background_bottom">#19122B</color>
+    <color name="neo_card">#171B2F</color>
+    <color name="neo_card_soft">#20243A</color>
+    <color name="neo_card_border">#343A5A</color>
+    <color name="neo_primary">#7C5CFF</color>
+    <color name="neo_primary_soft">#9B6CFF</color>
+    <color name="neo_pink">#FF5BA8</color>
+    <color name="neo_orange">#FF8A3D</color>
+    <color name="neo_green">#4ADE80</color>
+    <color name="neo_blue">#38BDF8</color>
+    <color name="neo_text_primary">#F7F7FF</color>
+    <color name="neo_text_secondary">#B8BCD5</color>
+    <color name="neo_text_muted">#7E849F</color>
 
     <!-- Metin — Fragment layout'lari bu adlari kullaniyor -->
     <color name="text_primary">@color/neo_text_primary</color>
     <color name="text_second">@color/neo_text_secondary</color>
-    <color name="text_dark">@color/neo_text_primary</color>
+    <color name="text_dark">@color/neo_text_secondary</color>
     <color name="adaptive_text_color">@color/neo_text_primary</color>
 
     <!-- Legacy marka tonlari — Neo paletine yonlendirildi -->
-    <color name="primary_dark">@color/neo_background_mid</color>
-    <color name="primary_light">@color/neo_card</color>
+    <color name="primary_dark">@color/neo_background_top</color>
+    <color name="primary_light">@color/neo_text_primary</color>
     <color name="brand_teal">@color/neo_primary</color>
     <color name="color_projection_blue">@color/neo_primary</color>
     <color name="color_usb_orange">@color/neo_orange</color>
@@ -54,13 +56,13 @@
 
     <!-- Yardimci -->
     <color name="black_overlay">#66000000</color>
-    <color name="setting_background_color">@color/neo_card_soft</color>
+    <color name="setting_background_color">@color/neo_card</color>
     <color name="divider_color">@color/neo_card_border</color>
     <color name="text_shadow">@android:color/transparent</color>
     <color name="extreme_dark_background">@color/neo_background_top</color>
 
     <!-- Splash -->
-    <color name="splash_background">@color/neo_background_mid</color>
+    <color name="splash_background">@color/neo_background_top</color>
     <color name="splash_text_white">@color/neo_text_primary</color>
     <color name="splash_text_revived">@color/neo_primary</color>
 
@@ -68,12 +70,12 @@
     <color name="segmented_button_stroke">@color/neo_card_border</color>
 
     <!-- Home ekranindaki ikon tint'leri -->
-    <color name="disabled_icon_tint">#40000000</color>
+    <color name="disabled_icon_tint">#40FFFFFF</color>
     <color name="monochrome_icon_tint">@color/neo_text_muted</color>
 
-    <!-- Uyari banner'i — amber tonlar korundu (MoodMap'teki NeoOrange ile uyumlu) -->
-    <color name="warning_banner_tint">#26EA580C</color>
-    <color name="warning_banner_stroke">#66EA580C</color>
-    <color name="warning_banner_icon">#EA580C</color>
+    <!-- Uyari banner'i — Neo orange ile uyumlu amber tonlar -->
+    <color name="warning_banner_tint">#26FF8A3D</color>
+    <color name="warning_banner_stroke">#66FF8A3D</color>
+    <color name="warning_banner_icon">#FF8A3D</color>
 
 </resources>
